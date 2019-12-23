@@ -44,12 +44,12 @@ public class InkedGrid
         //go through each pixel, and determine if it is black enough to be considered ink, or not
         int spotInBitset = 0;//where we are in the bitset (used to remember where we should be adding blacks or whites
 
-        for (int i = 0; i < width; i++)
+        for (int i = 0; i < height; i++)
         {
-            for (int j = 0; j < height; j++)
+            for (int j = 0; j < width; j++)
             {
                 //get the color of a given pixel
-                Color colorAtSpot = new Color(input.getRGB(i,j));
+                Color colorAtSpot = new Color(input.getRGB(j,i));
 
                 //if it the average lightness level of a pixel is black enough, add black to the BitSet
                 if ((colorAtSpot.getRed()+colorAtSpot.getBlue()+colorAtSpot.getGreen())/3 < inkAllowance)
@@ -80,18 +80,18 @@ public class InkedGrid
 
              int spotInBitSet = 0;
 
-             for (int i = 0; i < width; i++)//for each pixel horizontally...
+             for (int i = 0; i < height; i++)//for each pixel horizontally...
                {
-                   for (int j = 0; j < height; j++)//for each pixel vertically...
+                   for (int j = 0; j < width; j++)//for each pixel vertically...
                    {
                     //draw the proper color in the proper spot
                        if (data.get(spotInBitSet) == true)//true means black
                        {
-                           toPrint.setRGB(i,j, Color.black.getRGB());
+                           toPrint.setRGB(j,i, Color.black.getRGB());
                        }
                        else //false means white
                        {
-                           toPrint.setRGB(i,j,Color.white.getRGB());
+                           toPrint.setRGB(j,i,Color.white.getRGB());
                        }
                         spotInBitSet++;
                    }//end of each pixel vertically.
